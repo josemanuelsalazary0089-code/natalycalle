@@ -3,269 +3,270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 Para Ti Mi Amor 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<title>💕 ¿Quieres ser mi San Valentín? 💕</title>
+
+<!-- Fuentes románticas -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-body{
-overflow:hidden;
-font-family:'Quicksand',sans-serif;
-background:
-radial-gradient(circle at top, rgba(255,255,255,0.5), transparent 60%),
-linear-gradient(135deg,#ffd1e8,#ffe6f2,#fff0f7);
-animation:bgMove 14s ease infinite;
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@keyframes bgMove{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
+/* ===== FONDO NOCHE ROMÁNTICA ===== */
+body {
+  height: 100vh;
+  background: radial-gradient(circle at top, #2b1055, #0b0c2a);
+  overflow: hidden;
+  font-family: 'Playfair Display', serif;
+  color: #fff;
 }
 
-/* PARTÍCULAS */
-.heart,.petal{
-position:absolute;
-pointer-events:none;
-opacity:.8;
+/* ===== CORAZONES FLOTANDO ===== */
+.heart {
+  position: absolute;
+  bottom: -10px;
+  font-size: 22px;
+  animation: floatUp 7s infinite ease-in;
+  color: rgba(255, 105, 180, 0.8);
 }
 
-.heart{
-font-size:22px;
-animation:floatUp 7s linear infinite;
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
 }
 
-.petal{
-width:20px;
-height:20px;
-background:rgba(255,105,180,.6);
-border-radius:50% 50% 50% 0;
-transform:rotate(-45deg);
-animation:fall 10s linear infinite;
+/* ===== PANTALLAS ===== */
+.screen {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-@keyframes floatUp{
-from{transform:translateY(110vh) scale(1)}
-to{transform:translateY(-10vh) scale(1.6);opacity:0}
+.screen.active {
+  display: flex;
 }
 
-@keyframes fall{
-from{transform:translateY(-10vh) rotate(0deg)}
-to{transform:translateY(110vh) rotate(360deg);opacity:0}
+/* ===== PANTALLA INICIO ===== */
+#start h1 {
+  font-size: 42px;
+  font-family: 'Great Vibes', cursive;
+  color: #ffb3d9;
 }
 
-/* PANTALLAS */
-.screen{
-position:absolute;
-width:100%;
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-opacity:0;
-pointer-events:none;
-transition:.6s ease;
+#start p {
+  margin-top: 15px;
+  opacity: 0.8;
 }
 
-.active{opacity:1;pointer-events:auto}
-
-/* TEXTOS */
-h1,h2{
-font-family:'Pacifico',cursive;
-color:#ff2f77;
+/* ===== CARGA HELLO KITTY ===== */
+#loading img {
+  width: 180px;
+  animation: walk 1s infinite alternate;
 }
 
-.subtitle{
-margin-top:15px;
-color:#ff77a9;
-font-size:18px;
+@keyframes walk {
+  from { transform: translateX(-20px); }
+  to { transform: translateX(20px); }
 }
 
-/* HELLO KITTY */
-.kitty{
-width:230px;
-animation:kittyBounce 1.4s infinite alternate;
+#loading p {
+  margin-top: 20px;
+  font-size: 18px;
 }
 
-@keyframes kittyBounce{
-from{transform:translateY(0)}
-to{transform:translateY(18px)}
+/* ===== PREGUNTA ===== */
+#question h2 {
+  font-size: 36px;
+  color: #ffb3d9;
 }
 
-/* BOTONES */
-.buttons{
-margin-top:30px;
-display:flex;
-gap:25px;
+.buttons {
+  margin-top: 25px;
 }
 
-button{
-padding:14px 38px;
-border:none;
-border-radius:30px;
-font-size:18px;
-cursor:pointer;
-font-family:'Quicksand';
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
 }
 
-.yes{
-background:#ff4d88;
-color:#fff;
-box-shadow:0 10px 25px rgba(255,77,136,.5);
+.yes {
+  background: #ff4d6d;
+  color: white;
 }
 
-.no{
-background:#fff;
-color:#ff4d88;
-border:2px solid #ff4d88;
-position:relative;
+.no {
+  background: #555;
+  color: white;
+  margin-left: 15px;
 }
 
-/* SOBRE */
-.envelope{
-width:340px;
-height:230px;
-background:#ff6fa5;
-border-radius:18px;
-position:relative;
-cursor:pointer;
-box-shadow:0 18px 45px rgba(0,0,0,.25);
+/* ===== CARTA ===== */
+#letter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.flap{
-position:absolute;
-width:100%;
-height:100%;
-background:#ff4d88;
-clip-path:polygon(0 0,50% 55%,100% 0);
-transform-origin:top;
-transition:.8s;
-z-index:3;
-border-radius:18px 18px 0 0;
+.envelope {
+  position: relative;
+  width: 320px;
+  height: 220px;
+  cursor: pointer;
 }
 
-.letter{
-position:absolute;
-width:92%;
-height:80%;
-background:#fff;
-top:10%;
-left:4%;
-border-radius:14px;
-padding:22px;
-overflow-y:auto;
-box-shadow:0 12px 30px rgba(0,0,0,.2);
-transform:translateY(60%);
-transition:.8s;
-z-index:2;
+.envelope-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ffb6c1;
+  border-radius: 8px;
+  z-index: 1;
 }
 
-.envelope.open .flap{transform:rotateX(180deg)}
-.envelope.open .letter{transform:translateY(0)}
+.envelope-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff9eb5, #ff6f91);
+  clip-path: polygon(0 0, 100% 0, 50% 55%);
+  z-index: 3;
+}
 
-.letter h2{margin-bottom:10px}
-.letter p{margin-top:12px;color:#444;line-height:1.5}
+.letter {
+  position: absolute;
+  width: 280px;
+  height: 180px;
+  background: #fffafc;
+  top: 20px;
+  left: 20px;
+  border-radius: 6px;
+  transform: translateY(0);
+  transition: transform 1s ease;
+  z-index: 2;
+  overflow: hidden;
+}
 
-/* AUDIO */
-audio{display:none}
+.envelope.open .letter {
+  transform: translateY(-160px);
+}
+
+.letter-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.letter-content p {
+  font-size: 18px;
+  color: #7a003c;
+  line-height: 1.6;
+}
+
+.letter-content strong {
+  font-family: 'Great Vibes', cursive;
+  font-size: 26px;
+  color: #c9184a;
+}
 </style>
 </head>
+
 <body>
 
-<audio id="music" src="music.mp3" loop></audio>
+<!-- 🎵 MÚSICA -->
+<audio id="music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
-<div class="screen active" id="s1">
-<h1>Presiona cualquier tecla 💕</h1>
-<p class="subtitle">Tengo algo muy especial para ti…</p>
-</div>
-
-<div class="screen" id="s2">
-<img src="hello-kitty.png" class="kitty">
-<p class="subtitle">Preparando tu sorpresa 💖</p>
-</div>
-
-<div class="screen" id="s3">
-<h2>¿Quieres ser mi San Valentín? 💘</h2>
-<div class="buttons">
-<button class="yes" id="yes">Sí 💖</button>
-<button class="no" id="no">No 😳</button>
-</div>
+<!-- PANTALLA INICIO -->
+<div id="start" class="screen active">
+  <div>
+    <h1>Hola mi reina hermosa 💕</h1>
+    <p>Presiona cualquier tecla para comenzar</p>
+  </div>
 </div>
 
-<div class="screen" id="s4">
-<div class="envelope" id="envelope">
-<div class="flap"></div>
-<div class="letter">
-<h2>💌 Mi Amor 💌</h2>
-<p>Gracias por aceptar mi amorcita hermosa.</p>
-<p>Te amo con todo mi corazón y me haces el hombre más feliz del mundo.</p>
-<p>Te amo infinitamente, Nataly Calle 💖</p>
+<!-- CARGA HELLO KITTY -->
+<div id="loading" class="screen">
+  <div>
+    <img src="hello-kitty.gif" alt="Hello Kitty">
+    <p>Cargando amor...</p>
+  </div>
 </div>
+
+<!-- PREGUNTA -->
+<div id="question" class="screen">
+  <div>
+    <h2>¿Quieres ser mi San Valentín? 💖</h2>
+    <div class="buttons">
+      <button class="yes" onclick="showLetter()">SÍ</button>
+      <button class="no" onclick="alert('No es una opción 😌')">NO</button>
+    </div>
+  </div>
 </div>
-<p class="subtitle">Toca el sobre 💕</p>
+
+<!-- CARTA -->
+<div id="letter" class="screen">
+  <div id="letter-container">
+    <div class="envelope" onclick="openLetter()">
+      <div class="envelope-back"></div>
+      <div class="envelope-front"></div>
+      <div class="letter">
+        <div class="letter-content">
+          <p>
+            Gracias por aceptar mi amorcita hermosa.<br><br>
+            Te amo con todo mi corazón y me haces el hombre más feliz del mundo.<br><br>
+            Te amo infinitamente,<br>
+            <strong>Nataly Calle 💖</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-const music=document.getElementById("music");
+const screens = ["start","loading","question","letter"];
+let step = 0;
 
-/* FADE IN MÚSICA */
-function fadeIn(){
-music.volume=0;
-music.play();
-let v=0;
-const f=setInterval(()=>{
-v+=0.02;
-music.volume=v;
-if(v>=1)clearInterval(f);
-},100);
+document.addEventListener("keydown", () => {
+  document.getElementById("music").play();
+  changeScreen("loading");
+  setTimeout(() => changeScreen("question"), 3000);
+});
+
+function changeScreen(id) {
+  screens.forEach(s => document.getElementById(s).classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-/* CORAZONES */
-setInterval(()=>{
-const h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💖";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),7000);
-},300);
+function showLetter() {
+  changeScreen("letter");
+}
 
-/* PETALOS */
-setInterval(()=>{
-const p=document.createElement("div");
-p.className="petal";
-p.style.left=Math.random()*100+"vw";
-document.body.appendChild(p);
-setTimeout(()=>p.remove(),10000);
-},600);
+function openLetter() {
+  document.querySelector(".envelope").classList.add("open");
+}
 
-document.addEventListener("keydown",()=>{
-fadeIn();
-s1.classList.remove("active");
-s2.classList.add("active");
-setTimeout(()=>{
-s2.classList.remove("active");
-s3.classList.add("active");
-},2200);
-},{once:true});
-
-yes.onclick=()=>{
-s3.classList.remove("active");
-s4.classList.add("active");
-};
-
-no.onmouseover=()=>{
-no.style.left=Math.random()*80+"%";
-no.style.top=Math.random()*80+"%";
-};
-
-envelope.onclick=()=>{
-envelope.classList.toggle("open");
-};
+/* corazones */
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💖";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 7000);
+}, 400);
 </script>
 
 </body>
