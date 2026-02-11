@@ -3,35 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💖 Mi San Valentín 💖</title>
+<title>💖 Para Ti Mi Amor 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
 }
 
 body{
 overflow:hidden;
 background:linear-gradient(135deg,#ffd1e8,#fff0f7);
+font-family:'Quicksand',sans-serif;
 }
 
 /* CORAZONES */
 .heart{
 position:absolute;
-color:#ff4d88;
-font-size:20px;
-animation:floatUp 6s linear infinite;
-opacity:0.7;
+font-size:22px;
+animation:floatUp 7s linear infinite;
+opacity:0.8;
 }
 
 @keyframes floatUp{
-from{transform:translateY(100vh) scale(0.5);opacity:1;}
-to{transform:translateY(-10vh) scale(1.3);opacity:0;}
+from{transform:translateY(110vh);opacity:1;}
+to{transform:translateY(-10vh);opacity:0;}
 }
 
 /* PANTALLAS */
@@ -46,7 +45,7 @@ align-items:center;
 text-align:center;
 opacity:0;
 pointer-events:none;
-transition:0.6s ease;
+transition:0.5s ease;
 }
 
 .active{
@@ -56,6 +55,7 @@ pointer-events:auto;
 
 /* TITULOS */
 h1,h2{
+font-family:'Pacifico',cursive;
 color:#ff2f77;
 }
 
@@ -67,29 +67,29 @@ font-size:18px;
 
 /* HELLO KITTY */
 .kitty{
-width:180px;
-animation:walk 1.2s infinite alternate;
+width:220px;
+animation:kittyBounce 1.4s infinite alternate;
 }
 
-@keyframes walk{
-from{transform:translateX(-10px)}
-to{transform:translateX(10px)}
+@keyframes kittyBounce{
+from{transform:translateY(0);}
+to{transform:translateY(18px);}
 }
 
 /* BOTONES */
 .buttons{
 margin-top:30px;
 display:flex;
-gap:20px;
+gap:25px;
 }
 
 button{
-padding:12px 30px;
+padding:12px 35px;
 border:none;
 border-radius:30px;
 font-size:18px;
 cursor:pointer;
-transition:0.3s;
+font-family:'Quicksand';
 }
 
 .yes{
@@ -97,8 +97,6 @@ background:#ff4d88;
 color:white;
 box-shadow:0 8px 20px rgba(255,77,136,0.5);
 }
-
-.yes:hover{transform:scale(1.1);}
 
 .no{
 background:white;
@@ -110,12 +108,11 @@ position:relative;
 /* SOBRE */
 .envelope{
 width:320px;
-height:200px;
+height:210px;
 background:#ff6fa5;
+border-radius:15px;
 position:relative;
-border-radius:10px;
 cursor:pointer;
-overflow:hidden;
 }
 
 .flap{
@@ -139,8 +136,9 @@ width:90%;
 height:90%;
 top:5%;
 left:5%;
-border-radius:10px;
+border-radius:12px;
 padding:20px;
+overflow-y:auto;
 transform:translateY(100%);
 transition:0.8s;
 }
@@ -150,7 +148,8 @@ transform:translateY(0);
 }
 
 .letter p{
-margin-top:10px;
+margin-top:12px;
+font-size:16px;
 color:#444;
 }
 
@@ -163,28 +162,28 @@ audio{display:none;}
 <audio id="music" src="music.mp3" loop></audio>
 
 <!-- PANTALLA 1 -->
-<div id="screen1" class="screen active">
+<div class="screen active" id="s1">
 <h1>Presiona cualquier tecla 💕</h1>
-<p class="subtitle">Tengo algo muy especial para ti...</p>
+<p class="subtitle">Tengo algo muy especial para ti…</p>
 </div>
 
 <!-- PANTALLA 2 -->
-<div id="screen2" class="screen">
-<img src="hello-kitty.png" class="kitty">
+<div class="screen" id="s2">
+<img src="hello-kitty.png" class="kitty" alt="Hello Kitty">
 <p class="subtitle">Preparando tu sorpresa 💖</p>
 </div>
 
 <!-- PANTALLA 3 -->
-<div id="screen3" class="screen">
+<div class="screen" id="s3">
 <h2>¿Quieres ser mi San Valentín? 💘</h2>
 <div class="buttons">
-<button class="yes" id="yesBtn">SÍ 💖</button>
-<button class="no" id="noBtn">NO 😳</button>
+<button class="yes" id="yes">Sí 💖</button>
+<button class="no" id="no">No 😳</button>
 </div>
 </div>
 
 <!-- PANTALLA 4 -->
-<div id="screen4" class="screen">
+<div class="screen" id="s4">
 <div class="envelope" id="envelope">
 <div class="flap"></div>
 <div class="letter">
@@ -194,24 +193,21 @@ audio{display:none;}
 <p>Te amo infinitamente, Nataly Calle 💖</p>
 </div>
 </div>
-<p class="subtitle">Haz click en el sobre 💕</p>
+<p class="subtitle">Toca el sobre 💕</p>
 </div>
 
 <script>
-const s1=screen1,s2=screen2,s3=screen3,s4=screen4;
-const yes=yesBtn,no=noBtn;
 const music=document.getElementById("music");
 
-function hearts(){
+function heart(){
 const h=document.createElement("div");
 h.className="heart";
 h.innerHTML="💖";
 h.style.left=Math.random()*100+"vw";
-h.style.fontSize=(15+Math.random()*20)+"px";
 document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
+setTimeout(()=>h.remove(),7000);
 }
-setInterval(hearts,300);
+setInterval(heart,350);
 
 document.addEventListener("keydown",()=>{
 music.play();
@@ -221,7 +217,7 @@ s2.classList.add("active");
 setTimeout(()=>{
 s2.classList.remove("active");
 s3.classList.add("active");
-},2000);
+},2200);
 },{once:true});
 
 yes.onclick=()=>{
@@ -230,7 +226,6 @@ s4.classList.add("active");
 };
 
 no.onmouseover=()=>{
-no.style.position="absolute";
 no.style.left=Math.random()*80+"%";
 no.style.top=Math.random()*80+"%";
 };
