@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💕 Para mi reina hermosa 💕</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+background:linear-gradient(180deg,#0f0f2d,#1e3c72);
+font-family:'Press Start 2P', cursive;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+/* lluvia corazones */
+.heart{
+position:absolute;
+color:#ff4d88;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh);opacity:1;}
+100%{transform:translateY(110vh);opacity:0;}
+}
+
+.screen{
+display:none;
+text-align:center;
+padding:20px;
+}
+
+.active{
+display:block;
+}
+
+/* titulo pixel */
+.title{
+font-size:28px;
+color:#ff5c8a;
+text-shadow:4px 4px #000;
+margin-bottom:30px;
+}
+
+/* hello kitty animada */
+.kitty{
+font-size:80px;
+animation:spin 3s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+button{
+font-family:'Press Start 2P';
+padding:15px 25px;
+margin:15px;
+border:none;
+cursor:pointer;
+background:#ff5c8a;
+color:white;
+font-size:12px;
+box-shadow:4px 4px #000;
+transition:0.2s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+.no{
+background:#555;
+}
+
+/* carta final */
+.letter{
+background:white;
+color:#ff4d88;
+padding:30px;
+border-radius:10px;
+box-shadow:8px 8px #000;
+max-width:400px;
+animation:pop 1s ease;
+}
+
+@keyframes pop{
+0%{transform:scale(0);opacity:0;}
+100%{transform:scale(1);opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- lluvia corazones -->
+<script>
+for(let i=0;i<50;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💕";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*5+3)+"s";
+document.body.appendChild(heart);
+}
+</script>
+
+<!-- Pantalla 1 -->
+<div id="intro" class="screen active">
+<div class="title">Hola mi reina hermosa 🥰</div>
+<div class="kitty">🎀🐱</div>
+<p>Presiona cualquier tecla...</p>
+</div>
+
+<!-- Pregunta -->
+<div id="question" class="screen">
+<div class="title">¿Quieres ser mi San Valentín?</div>
+<button id="yes">SÍ 💕</button>
+<button id="no" class="no">NO 😢</button>
+</div>
+
+<!-- Carta final -->
+<div id="final" class="screen">
+<div class="letter">
+<p>
+Gracias por aceptar mi amorcita hermosa 💖<br><br>
+Te amo con todo mi corazón.<br><br>
+Me haces el hombre más feliz del mundo.<br><br>
+Te amo infinitamente,<br><br>
+<b>Nataly Calle 💕</b>
+</p>
+</div>
+</div>
+
+<script>
+
+// cambiar pantalla al presionar tecla
+document.addEventListener("keydown",()=>{
+document.getElementById("intro").classList.remove("active");
+document.getElementById("question").classList.add("active");
+});
+
+// boton NO huye
+const noBtn=document.getElementById("no");
+noBtn.addEventListener("mouseover",()=>{
+noBtn.style.position="relative";
+noBtn.style.left=(Math.random()*200-100)+"px";
+noBtn.style.top=(Math.random()*200-100)+"px";
+});
+
+// boton SI
+document.getElementById("yes").addEventListener("click",()=>{
+document.getElementById("question").classList.remove("active");
+document.getElementById("final").classList.add("active");
+});
+
+</script>
+
+</body>
+</html>
