@@ -3,270 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 Para mi reina hermosa 💖</title>
 
-<title>💕 ¿Quieres ser mi San Valentín? 💕</title>
-
-<!-- Fuentes románticas -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  height:100vh;
+  background:linear-gradient(to top,#0a0a2a,#1b0f3b,#2b1055);
+  overflow:hidden;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Press Start 2P', cursive;
 }
 
-/* ===== FONDO NOCHE ROMÁNTICA ===== */
-body {
-  height: 100vh;
-  background: radial-gradient(circle at top, #2b1055, #0b0c2a);
-  overflow: hidden;
-  font-family: 'Playfair Display', serif;
-  color: #fff;
+/* Fondo estrellas */
+body::after{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-image:radial-gradient(white 1px, transparent 1px);
+  background-size:40px 40px;
+  opacity:0.15;
+  z-index:0;
 }
 
-/* ===== CORAZONES FLOTANDO ===== */
-.heart {
-  position: absolute;
-  bottom: -10px;
-  font-size: 22px;
-  animation: floatUp 7s infinite ease-in;
-  color: rgba(255, 105, 180, 0.8);
+/* Corazones pixel */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:18px;
+  animation:float 6s linear infinite;
+  z-index:1;
+}
+@keyframes float{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-110vh);opacity:0}
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
+/* Pantallas */
+.screen{
+  display:none;
+  text-align:center;
+  padding:20px;
+  z-index:2;
+}
+.active{display:block}
+
+/* Typing */
+#typing{
+  font-size:14px;
+  line-height:1.8;
 }
 
-/* ===== PANTALLAS ===== */
-.screen {
-  display: none;
-  height: 100vh;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+/* Hello Kitty */
+#kitty{
+  width:150px;
+  margin-bottom:20px;
+  animation:bounce 1s infinite alternate;
+}
+@keyframes bounce{
+  from{transform:translateY(0)}
+  to{transform:translateY(-15px)}
 }
 
-.screen.active {
-  display: flex;
+/* Botones */
+button{
+  padding:12px 20px;
+  font-family:'Press Start 2P';
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+#yes{
+  background:#ff4d6d;
+  color:white;
+}
+#no{
+  background:#444;
+  color:white;
+  position:absolute;
 }
 
-/* ===== PANTALLA INICIO ===== */
-#start h1 {
-  font-size: 42px;
-  font-family: 'Great Vibes', cursive;
-  color: #ffb3d9;
+/* Carta */
+#letter{
+  background:white;
+  color:#7a003c;
+  border-radius:16px;
+  padding:30px;
+  width:320px;
+  font-family:'Great Vibes', cursive;
+  font-size:28px;
+  animation:pop 0.8s ease;
 }
-
-#start p {
-  margin-top: 15px;
-  opacity: 0.8;
-}
-
-/* ===== CARGA HELLO KITTY ===== */
-#loading img {
-  width: 180px;
-  animation: walk 1s infinite alternate;
-}
-
-@keyframes walk {
-  from { transform: translateX(-20px); }
-  to { transform: translateX(20px); }
-}
-
-#loading p {
-  margin-top: 20px;
-  font-size: 18px;
-}
-
-/* ===== PREGUNTA ===== */
-#question h2 {
-  font-size: 36px;
-  color: #ffb3d9;
-}
-
-.buttons {
-  margin-top: 25px;
-}
-
-button {
-  padding: 12px 25px;
-  font-size: 18px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-}
-
-.yes {
-  background: #ff4d6d;
-  color: white;
-}
-
-.no {
-  background: #555;
-  color: white;
-  margin-left: 15px;
-}
-
-/* ===== CARTA ===== */
-#letter-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.envelope {
-  position: relative;
-  width: 320px;
-  height: 220px;
-  cursor: pointer;
-}
-
-.envelope-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #ffb6c1;
-  border-radius: 8px;
-  z-index: 1;
-}
-
-.envelope-front {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #ff9eb5, #ff6f91);
-  clip-path: polygon(0 0, 100% 0, 50% 55%);
-  z-index: 3;
-}
-
-.letter {
-  position: absolute;
-  width: 280px;
-  height: 180px;
-  background: #fffafc;
-  top: 20px;
-  left: 20px;
-  border-radius: 6px;
-  transform: translateY(0);
-  transition: transform 1s ease;
-  z-index: 2;
-  overflow: hidden;
-}
-
-.envelope.open .letter {
-  transform: translateY(-160px);
-}
-
-.letter-content {
-  padding: 20px;
-  text-align: center;
-}
-
-.letter-content p {
-  font-size: 18px;
-  color: #7a003c;
-  line-height: 1.6;
-}
-
-.letter-content strong {
-  font-family: 'Great Vibes', cursive;
-  font-size: 26px;
-  color: #c9184a;
+@keyframes pop{
+  from{transform:scale(0);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 MÚSICA -->
-<audio id="music" loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" src="musica.mp3" loop></audio>
 
-<!-- PANTALLA INICIO -->
-<div id="start" class="screen active">
-  <div>
-    <h1>Hola mi reina hermosa 💕</h1>
-    <p>Presiona cualquier tecla para comenzar</p>
-  </div>
+<div id="screen1" class="screen active">
+  <div id="typing"></div>
 </div>
 
-<!-- CARGA HELLO KITTY -->
-<div id="loading" class="screen">
-  <div>
-    <img src="hello-kitty.gif" alt="Hello Kitty">
-    <p>Cargando amor...</p>
-  </div>
+<div id="screen2" class="screen">
+  <img src="hellokitty.png" id="kitty">
+  <h2>¿Quieres ser mi San Valentín? 💖</h2><br>
+  <button id="yes">SÍ</button>
+  <button id="no">NO</button>
 </div>
 
-<!-- PREGUNTA -->
-<div id="question" class="screen">
-  <div>
-    <h2>¿Quieres ser mi San Valentín? 💖</h2>
-    <div class="buttons">
-      <button class="yes" onclick="showLetter()">SÍ</button>
-      <button class="no" onclick="alert('No es una opción 😌')">NO</button>
-    </div>
-  </div>
-</div>
-
-<!-- CARTA -->
-<div id="letter" class="screen">
-  <div id="letter-container">
-    <div class="envelope" onclick="openLetter()">
-      <div class="envelope-back"></div>
-      <div class="envelope-front"></div>
-      <div class="letter">
-        <div class="letter-content">
-          <p>
-            Gracias por aceptar mi amorcita hermosa.<br><br>
-            Te amo con todo mi corazón y me haces el hombre más feliz del mundo.<br><br>
-            Te amo infinitamente,<br>
-            <strong>Nataly Calle 💖</strong>
-          </p>
-        </div>
-      </div>
-    </div>
+<div id="screen3" class="screen">
+  <div id="letter">
+    Gracias por aceptar mi amorcita hermosa.<br><br>
+    Te amo con todo mi corazón y me haces el hombre más feliz del mundo.<br><br>
+    Te amo infinitamente,<br>
+    <strong>Nataly Calle 💖</strong>
   </div>
 </div>
 
 <script>
-const screens = ["start","loading","question","letter"];
-let step = 0;
+const music = document.getElementById("music");
 
-document.addEventListener("keydown", () => {
-  document.getElementById("music").play();
-  changeScreen("loading");
-  setTimeout(() => changeScreen("question"), 3000);
+/* Activar música al primer click */
+document.body.addEventListener("click",()=>{
+  music.play().catch(()=>{});
+},{once:true});
+
+/* Texto letra por letra */
+const text = "Hola mi reina hermosa 💖\n\nTengo algo muy importante que preguntarte...";
+let i = 0;
+const typing = document.getElementById("typing");
+
+function type(){
+  if(i < text.length){
+    typing.innerHTML += text[i] === "\n" ? "<br>" : text[i];
+    i++;
+    setTimeout(type, 60);
+  }else{
+    setTimeout(()=>change(2),1000);
+  }
+}
+type();
+
+/* Cambiar pantallas */
+function change(n){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  document.getElementById("screen"+n).classList.add("active");
+}
+
+/* Botón NO huye */
+const no = document.getElementById("no");
+no.addEventListener("mouseover", ()=>{
+  no.style.left = Math.random()*70 + "vw";
+  no.style.top = Math.random()*70 + "vh";
 });
 
-function changeScreen(id) {
-  screens.forEach(s => document.getElementById(s).classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
+/* Botón SÍ */
+document.getElementById("yes").onclick = ()=>change(3);
 
-function showLetter() {
-  changeScreen("letter");
-}
-
-function openLetter() {
-  document.querySelector(".envelope").classList.add("open");
-}
-
-/* corazones */
-setInterval(() => {
+/* Corazones pixel */
+setInterval(()=>{
   const h = document.createElement("div");
-  h.className = "heart";
-  h.innerHTML = "💖";
-  h.style.left = Math.random() * 100 + "vw";
+  h.className="heart";
+  h.innerText="💗";
+  h.style.left=Math.random()*100+"vw";
   document.body.appendChild(h);
-  setTimeout(() => h.remove(), 7000);
-}, 400);
+  setTimeout(()=>h.remove(),6000);
+},300);
 </script>
 
 </body>
