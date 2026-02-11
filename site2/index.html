@@ -21,7 +21,7 @@ body{
   font-family:'Press Start 2P', cursive;
 }
 
-/* Fondo estrellas */
+/* Estrellas */
 body::after{
   content:"";
   position:absolute;
@@ -55,7 +55,7 @@ body::after{
 }
 .active{display:block}
 
-/* Typing */
+/* Texto typing */
 #typing{
   font-size:14px;
   line-height:1.8;
@@ -63,7 +63,7 @@ body::after{
 
 /* Hello Kitty */
 #kitty{
-  width:150px;
+  width:160px;
   margin-bottom:20px;
   animation:bounce 1s infinite alternate;
 }
@@ -112,18 +112,32 @@ button{
 
 <audio id="music" src="music.mp3" loop></audio>
 
-<div id="screen1" class="screen active">
+<!-- Pantalla inicio -->
+<div id="screen0" class="screen active">
+  <h2>💖 Hola mi reina hermosa 💖</h2><br>
+  <p>Presiona cualquier tecla para empezar...</p>
+</div>
+
+<!-- Pantalla typing -->
+<div id="screen1" class="screen">
   <div id="typing"></div>
 </div>
 
+<!-- Pantalla Hello Kitty -->
 <div id="screen2" class="screen">
   <img src="hello-kitty.png" id="kitty">
+  <p>Cargando algo muy especial para ti... 💕</p>
+</div>
+
+<!-- Pregunta -->
+<div id="screen3" class="screen">
   <h2>¿Quieres ser mi San Valentín? 💖</h2><br>
   <button id="yes">SÍ</button>
   <button id="no">NO</button>
 </div>
 
-<div id="screen3" class="screen">
+<!-- Carta final -->
+<div id="screen4" class="screen">
   <div id="letter">
     Gracias por aceptar mi amorcita hermosa.<br><br>
     Te amo con todo mi corazón y me haces el hombre más feliz del mundo.<br><br>
@@ -134,27 +148,34 @@ button{
 
 <script>
 const music = document.getElementById("music");
+let started = false;
 
-/* Activar música al primer click */
-document.body.addEventListener("click",()=>{
+/* Presionar cualquier tecla */
+document.addEventListener("keydown",()=>{
+  if(started) return;
+  started = true;
   music.play().catch(()=>{});
-},{once:true});
+  change(1);
+  typeText();
+});
 
 /* Texto letra por letra */
-const text = "Hola mi reina hermosa 💖\n\nTengo algo muy importante que preguntarte...";
+const text = "Tengo algo muy importante que preguntarte...";
 let i = 0;
 const typing = document.getElementById("typing");
 
-function type(){
+function typeText(){
   if(i < text.length){
-    typing.innerHTML += text[i] === "\n" ? "<br>" : text[i];
+    typing.innerHTML += text[i];
     i++;
-    setTimeout(type, 60);
+    setTimeout(typeText, 60);
   }else{
-    setTimeout(()=>change(2),1000);
+    setTimeout(()=>{
+      change(2);
+      setTimeout(()=>change(3),5000); // 5 segundos Hello Kitty
+    },1000);
   }
 }
-type();
 
 /* Cambiar pantallas */
 function change(n){
@@ -170,9 +191,9 @@ no.addEventListener("mouseover", ()=>{
 });
 
 /* Botón SÍ */
-document.getElementById("yes").onclick = ()=>change(3);
+document.getElementById("yes").onclick = ()=>change(4);
 
-/* Corazones pixel */
+/* Corazones */
 setInterval(()=>{
   const h = document.createElement("div");
   h.className="heart";
@@ -185,4 +206,3 @@ setInterval(()=>{
 
 </body>
 </html>
-
