@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 Mi San Valentín 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+overflow:hidden;
+background:linear-gradient(135deg,#ffd1e8,#fff0f7);
+}
+
+/* CORAZONES */
+.heart{
+position:absolute;
+color:#ff4d88;
+font-size:20px;
+animation:floatUp 6s linear infinite;
+opacity:0.7;
+}
+
+@keyframes floatUp{
+from{transform:translateY(100vh) scale(0.5);opacity:1;}
+to{transform:translateY(-10vh) scale(1.3);opacity:0;}
+}
+
+/* PANTALLAS */
+.screen{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+opacity:0;
+pointer-events:none;
+transition:0.6s ease;
+}
+
+.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* TITULOS */
+h1,h2{
+color:#ff2f77;
+}
+
+.subtitle{
+margin-top:15px;
+color:#ff77a9;
+font-size:18px;
+}
+
+/* HELLO KITTY */
+.kitty{
+width:180px;
+animation:walk 1.2s infinite alternate;
+}
+
+@keyframes walk{
+from{transform:translateX(-10px)}
+to{transform:translateX(10px)}
+}
+
+/* BOTONES */
+.buttons{
+margin-top:30px;
+display:flex;
+gap:20px;
+}
+
+button{
+padding:12px 30px;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.yes{
+background:#ff4d88;
+color:white;
+box-shadow:0 8px 20px rgba(255,77,136,0.5);
+}
+
+.yes:hover{transform:scale(1.1);}
+
+.no{
+background:white;
+color:#ff4d88;
+border:2px solid #ff4d88;
+position:relative;
+}
+
+/* SOBRE */
+.envelope{
+width:320px;
+height:200px;
+background:#ff6fa5;
+position:relative;
+border-radius:10px;
+cursor:pointer;
+overflow:hidden;
+}
+
+.flap{
+position:absolute;
+width:100%;
+height:100%;
+background:#ff4d88;
+clip-path:polygon(0 0,50% 50%,100% 0);
+transform-origin:top;
+transition:0.8s;
+}
+
+.open .flap{
+transform:rotateX(180deg);
+}
+
+.letter{
+position:absolute;
+background:white;
+width:90%;
+height:90%;
+top:5%;
+left:5%;
+border-radius:10px;
+padding:20px;
+transform:translateY(100%);
+transition:0.8s;
+}
+
+.open .letter{
+transform:translateY(0);
+}
+
+.letter p{
+margin-top:10px;
+color:#444;
+}
+
+/* AUDIO */
+audio{display:none;}
+</style>
+</head>
+<body>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<!-- PANTALLA 1 -->
+<div id="screen1" class="screen active">
+<h1>Presiona cualquier tecla 💕</h1>
+<p class="subtitle">Tengo algo muy especial para ti...</p>
+</div>
+
+<!-- PANTALLA 2 -->
+<div id="screen2" class="screen">
+<img src="hello-kitty.png" class="kitty">
+<p class="subtitle">Preparando tu sorpresa 💖</p>
+</div>
+
+<!-- PANTALLA 3 -->
+<div id="screen3" class="screen">
+<h2>¿Quieres ser mi San Valentín? 💘</h2>
+<div class="buttons">
+<button class="yes" id="yesBtn">SÍ 💖</button>
+<button class="no" id="noBtn">NO 😳</button>
+</div>
+</div>
+
+<!-- PANTALLA 4 -->
+<div id="screen4" class="screen">
+<div class="envelope" id="envelope">
+<div class="flap"></div>
+<div class="letter">
+<h2>💌 Mi Amor 💌</h2>
+<p>Gracias por aceptar mi amorcita hermosa.</p>
+<p>Te amo con todo mi corazón y me haces el hombre más feliz del mundo.</p>
+<p>Te amo infinitamente, Nataly Calle 💖</p>
+</div>
+</div>
+<p class="subtitle">Haz click en el sobre 💕</p>
+</div>
+
+<script>
+const s1=screen1,s2=screen2,s3=screen3,s4=screen4;
+const yes=yesBtn,no=noBtn;
+const music=document.getElementById("music");
+
+function hearts(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(15+Math.random()*20)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+}
+setInterval(hearts,300);
+
+document.addEventListener("keydown",()=>{
+music.play();
+s1.classList.remove("active");
+s2.classList.add("active");
+
+setTimeout(()=>{
+s2.classList.remove("active");
+s3.classList.add("active");
+},2000);
+},{once:true});
+
+yes.onclick=()=>{
+s3.classList.remove("active");
+s4.classList.add("active");
+};
+
+no.onmouseover=()=>{
+no.style.position="absolute";
+no.style.left=Math.random()*80+"%";
+no.style.top=Math.random()*80+"%";
+};
+
+envelope.onclick=()=>{
+envelope.classList.toggle("open");
+};
+</script>
+
+</body>
+</html>
